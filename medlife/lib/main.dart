@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
+import 'package:medlife/Continue.dart';
 
 void main() {
   runApp(const MyApp());
@@ -89,13 +90,90 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 // Dummy Home Screen
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Welcome to Medlife!"),
-      ),
+      backgroundColor: Color(0xFF0E1B30), // Dark background
+      body: SafeArea(
+        
+          
+          child: Column(
+            
+            
+            children: [
+              
+              const Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Welcome to Medlife",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Relax, Reflex, and Recharge",
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              SvgPicture.asset(
+                'assets/image1.svg', // Replace with your asset path
+                width: 100,
+                height: 100,
+              ),
+              
+              const SizedBox(height: 20),
+              const Text(
+                "Discover the power of mindfulness with guided meditations, breathing exercise, and daily tracking to help you find calm and focus",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(height: 40),
+              SizedBox(
+                
+                width: 200,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Navigate to Continue screen
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Continue()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF70D6FF), // Light blue button
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      
+                    ),
+                  ),
+                  child: const Text(
+                    "Continue",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
     );
+    
   }
 }
