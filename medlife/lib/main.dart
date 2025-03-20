@@ -38,6 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Loading SVG file...");
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -47,6 +48,8 @@ class _SplashScreenState extends State<SplashScreen> {
             child: SvgPicture.asset(
               'assets/Screenshot.svg',
               fit: BoxFit.cover,
+              placeholderBuilder: (BuildContext context) => 
+                  Center(child: CircularProgressIndicator()), // Show loading if SVG is not found
             ),
           ),
           Column(
@@ -127,12 +130,13 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               SvgPicture.asset(
-                'assets/image1.svg', // Replace with your asset path
-                width: 100,
-                height: 100,
+                'assets/image1.svg',
+                // width: 100,
+                // height: 100,
               ),
               
-              const SizedBox(height: 20),
+              const SizedBox(height: 200),
+              
               const Text(
                 "Discover the power of mindfulness with guided meditations, breathing exercise, and daily tracking to help you find calm and focus",
                 textAlign: TextAlign.center,

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:medlife/CreateAccount.dart';
+import 'package:medlife/LoginScreen.dart';
 
 class Continue extends StatelessWidget {
   @override
@@ -20,12 +23,10 @@ class Continue extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(18),
-                  child: Image.asset(
-                    'assets/meditator.png', // Replace with your asset path
-                    height: 200,
-                    width: 200,
-                    fit: BoxFit.cover,
-                  ),
+                  child: SvgPicture.asset(
+                    'assets/image1.svg',
+                    
+                  )
                 ),
               ),
               const SizedBox(height: 30),
@@ -44,7 +45,9 @@ class Continue extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to login screen
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF70D6FF), // Light blue button
@@ -68,7 +71,10 @@ class Continue extends StatelessWidget {
                 height: 50,
                 child: OutlinedButton(
                   onPressed: () {
-                    // Navigate to sign-up screen
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => CreateAccount()),
+                    );
+                    
                   },
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: Colors.white),
