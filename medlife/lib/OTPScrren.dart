@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medlife/Navigation.dart';
 import 'package:pinput/pinput.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -73,6 +74,9 @@ class _OTPScreenState extends State<OTPScreen> {
               ElevatedButton(
                 onPressed: () {
                   // Handle OTP verification
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Navigation()),
+                    );
                   print("Verifying OTP: ${_otpController.text}");
                 },
                 style: ElevatedButton.styleFrom(
@@ -98,6 +102,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      
                       // Handle OTP resend
                       print("Resending OTP...");
                     },

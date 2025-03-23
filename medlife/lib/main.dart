@@ -45,12 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           // SVG Background Image
           Positioned.fill(
-            child: SvgPicture.asset(
-              'assets/Screenshot.svg',
-              fit: BoxFit.cover,
-              placeholderBuilder: (BuildContext context) => 
-                  Center(child: CircularProgressIndicator()), // Show loading if SVG is not found
-            ),
+            child: Image.asset('assets/Background.png', fit: BoxFit.cover),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,

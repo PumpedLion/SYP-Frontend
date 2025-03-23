@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medlife/Navigation.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -55,6 +56,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: () {
                   // Handle login action
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Navigation()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.cyanAccent,
