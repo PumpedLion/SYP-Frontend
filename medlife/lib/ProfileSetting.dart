@@ -53,7 +53,7 @@ class ProfileSettingsPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                          color: Colors.cyan,
+                          color: Color(0xFF70D6FF),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(Icons.camera_alt, size: 18, color: Colors.white),
@@ -82,7 +82,7 @@ class ProfileSettingsPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.cyan,
+                    backgroundColor: Color(0xFF70D6FF),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

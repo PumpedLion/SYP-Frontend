@@ -25,7 +25,7 @@ class _CreateAccountState extends State<CreateAccount> {
               Text(
                 "Create Account",
                 style: TextStyle(
-                  color: Colors.cyanAccent,
+                  color: Color(0xFF70D6FF),
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -63,7 +63,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   // Handle account creation
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.cyanAccent,
+                  backgroundColor: Color(0xFF70D6FF),
                   foregroundColor: Colors.black,
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                   shape: RoundedRectangleBorder(
@@ -93,7 +93,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     child: Text(
                       "Log in",
                       style: TextStyle(
-                        color: Colors.cyanAccent,
+                        color: Color(0xFF70D6FF),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),

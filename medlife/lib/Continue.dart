@@ -17,16 +17,10 @@ class Continue extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueAccent, width: 2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(18),
-                  child: SvgPicture.asset(
-                    'assets/image1.svg',
-                    
-                  )
+                  child: Image.asset('assets/Image 2.png'),
                 ),
               ),
               const SizedBox(height: 30),

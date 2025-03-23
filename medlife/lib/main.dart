@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Navigate to HomeScreen after 3 seconds
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => OpenScreen()),
       );
     });
   }
@@ -51,11 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // SVG Logo
-              SvgPicture.asset(
-                'assets/logo1.svg',
-                width: 100,
-                height: 100,
-              ),
+              Image.asset('assets/Logo.png',height: 60, ),
               const SizedBox(height: 20),
               // App Name
               const Text(
@@ -77,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
               const SizedBox(height: 20),
               // Progress Indicator
               const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF70D6FF)),
               ),
             ],
           ),
@@ -89,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
 // Dummy Home Screen
 
-class HomeScreen extends StatelessWidget {
+class OpenScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,14 +119,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
-              SvgPicture.asset(
-                'assets/image1.svg',
-                // width: 100,
-                // height: 100,
-              ),
+              const SizedBox(height: 100),
+              Image.asset('assets/Image 1.png'),
               
-              const SizedBox(height: 200),
+              const SizedBox(height: 50),
               
               const Text(
                 "Discover the power of mindfulness with guided meditations, breathing exercise, and daily tracking to help you find calm and focus",
