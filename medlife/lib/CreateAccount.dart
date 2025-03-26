@@ -21,6 +21,7 @@ class _CreateAccountState extends State<CreateAccount> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/Logo.png'),
               // Title
               Text(
                 "Create Account",

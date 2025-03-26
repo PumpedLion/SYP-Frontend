@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'dart:async';
 import 'package:medlife/Continue.dart';
 
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("Loading SVG file...");
+   
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,

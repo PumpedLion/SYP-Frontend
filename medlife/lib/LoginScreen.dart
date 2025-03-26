@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medlife/Continue.dart';
-import 'package:medlife/Navigation.dart';
+
+import 'package:medlife/NavigationBar.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -22,20 +21,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                    onTap: () {
-                      // Navigate to login screen
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => Continue()),
-                      );
-                    },
-                    child: SvgPicture.asset('assets/Logo1.svg'),
-                  ),
-              // Logo
-              // SvgPicture.asset('assets/Logo1.svg'),
               
+              Image.asset('assets/Logo.png', height: 100, width: 100),
               SizedBox(height: 16),
-              
               // App Name
               Text(
                 "Medlife",
@@ -67,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   // Handle login action
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Navigation()),
+                    MaterialPageRoute(builder: (context) => NavigationScreen()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

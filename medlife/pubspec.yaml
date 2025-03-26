@@ -71,13 +71,18 @@ flutter:
     - assets/Icons/SelectedHome.png
     - assets/Icons/SelectedGrid.png
     - assets/Icons/SelectedMain.png
+    - assets/Icons/Man.png
     - assets/Image 1.png
     - assets/Image 2.png
-    - assets/Screenshot.svg
-    - assets/Logo1.svg
-    - assets/image11.svg
-    - assets/image12.svg
-    - assets/image1.svg
+    - assets/image4.png
+    - assets/image5.png
+    - assets/image6.png
+    - assets/image7.png
+    - assets/image8.png
+    - assets/image9.png
+    - assets/image10.png
+    - assets/image11.png
+    - assets/image12.png
 
   
 

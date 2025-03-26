@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:medlife/EditAccount.dart';
 
 void main() {
   runApp(MyApp());
@@ -80,7 +81,14 @@ class ProfileSettingsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditAccount(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF70D6FF),
                     shape: RoundedRectangleBorder(
@@ -90,7 +98,7 @@ class ProfileSettingsPage extends StatelessWidget {
                   ),
                   child: const Text(
                     "Edit Profile",
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    style: TextStyle(color: Color(0xFF0A1A2F), fontSize: 14),
                   ),
                 ),
               ],

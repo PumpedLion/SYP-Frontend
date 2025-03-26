@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -14,7 +13,31 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class HomeScreen extends StatelessWidget {
+  final List<Map<String, String>> meditationItems = [
+    {
+      "image": "assets/image4.png",
+      "title": "Mindfulness",
+      "description": "Relax and be in the moment",
+    },
+    {
+      "image": "assets/image5.png",
+      "title": "Stress Relief",
+      "description": "Let go of worries and breathe",
+    },
+    {
+      "image": "assets/image6.png",
+      "title": "Deep Focus",
+      "description": "Improve concentration and clarity",
+    },
+    {
+      "image": "assets/image7.png",
+      "title": "Sleep Better",
+      "description": "Prepare your mind for restful sleep",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +67,7 @@ class HomeScreen extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.jpg'),
+              backgroundImage: AssetImage('assets/Icons/Man.png'),
             ),
             SizedBox(width: 10),
             Column(
@@ -137,22 +160,26 @@ class HomeScreen extends StatelessWidget {
             mainAxisSpacing: 10,
             childAspectRatio: 0.8,
           ),
-          itemCount: 4,
+          itemCount: meditationItems.length,
           itemBuilder: (context, index) {
-            return _buildMeditationCardItem();
+            return _buildMeditationCardItem(
+              meditationItems[index]["image"]!,
+              meditationItems[index]["title"]!,
+              meditationItems[index]["description"]!,
+            );
           },
         ),
       ],
     );
   }
 
-  Widget _buildMeditationCardItem() {
+  Widget _buildMeditationCardItem(String image, String title, String description) {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xFF1E2A3A),
         borderRadius: BorderRadius.circular(15),
         image: DecorationImage(
-          image: AssetImage("assets/meditation${1 + (DateTime.now().second % 4)}.jpg"),
+          image: AssetImage(image),
           fit: BoxFit.cover,
         ),
       ),
@@ -165,11 +192,11 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Mindfulness",
+                title,
                 style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Text(
-                "Ababa assaaddadadad",
+                description,
                 style: TextStyle(color: Colors.white70, fontSize: 12),
               ),
             ],

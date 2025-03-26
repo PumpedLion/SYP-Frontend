@@ -15,8 +15,7 @@ class GridPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-
+      backgroundColor: Color(0xFF0A1A2F),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -30,27 +29,36 @@ class GridPage extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(16),
                 height: 150,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 80, // Increase avatar size
-                    backgroundColor:
-                        Colors.transparent, // Prevents color overlay issues
-                    foregroundImage: AssetImage(
-                      'assets/Icons/Aman.png',
-                    ), // Ensures full image is displayed
-                  ),
-
-                  title: Text(
-                    'Hi John,',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 80, // Adjust width
+                      height: 80, // Adjust height
+                      child: CircleAvatar(
+                        radius: 40, // This will now take effect
+                        backgroundImage: AssetImage('assets/Icons/Man.png'),
+                      ),
                     ),
-                  ),
-                  subtitle: Text(
-                    'Refresh the mind and spirit\nAnd bring clarity and focus',
-                    style: TextStyle(color: Colors.white70),
-                  ),
+                    SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hi John,',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Refresh the mind and spirit And bring \n clarity and focus',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -58,11 +66,11 @@ class GridPage extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  buildProgressItem('Yoga Session', 'assets/yoga.png', 0.6),
-                  buildProgressItem('Peaceful', 'assets/peaceful.png', 0.8),
-                  buildProgressItem('Nature', 'assets/nature.png', 0.4),
-                  buildProgressItem('Awaken', 'assets/awaken.png', 0.9),
-                  buildProgressItem('Calm', 'assets/calm.png', 0.2),
+                  buildProgressItem('Yoga Session', 'assets/image10.png', 0.6),
+                  buildProgressItem('Peaceful', 'assets/image11.png', 0.8),
+                  buildProgressItem('Nature', 'assets/image12.png', 0.4),
+                  buildProgressItem('Awaken', 'assets/image5.png', 0.9),
+                  buildProgressItem('Calm', 'assets/image6.png', 0.2),
                 ],
               ),
             ),
@@ -74,7 +82,7 @@ class GridPage extends StatelessWidget {
 
   Widget buildProgressItem(String title, String image, double progress) {
     return Card(
-      color: Colors.grey[900],
+      color: Color(0xFF041222),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: ListTile(
         leading: ClipRRect(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medlife/Navigation.dart';
+import 'package:medlife/NavigationBar.dart';
 import 'package:pinput/pinput.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _OTPScreenState extends State<OTPScreen> {
               Text(
                 "Enter OTP Code",
                 style: TextStyle(
-                  color: Colors.cyanAccent,
+                  color: Color(0xFF70D6FF),
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -60,7 +60,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   decoration: BoxDecoration(
                     color: Color(0xFF1A2C46),
                     borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Colors.cyanAccent),
+                    border: Border.all(color: Color(0xFF70D6FF)),
                   ),
                 ),
                 onCompleted: (pin) {
@@ -75,12 +75,12 @@ class _OTPScreenState extends State<OTPScreen> {
                 onPressed: () {
                   // Handle OTP verification
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Navigation()),
+                      MaterialPageRoute(builder: (context) => NavigationScreen()),
                     );
                   print("Verifying OTP: ${_otpController.text}");
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.cyanAccent,
+                  backgroundColor: Color(0xFF70D6FF),
                   foregroundColor: Colors.black,
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                   shape: RoundedRectangleBorder(
@@ -109,7 +109,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     child: Text(
                       "Resend code",
                       style: TextStyle(
-                        color: Colors.cyanAccent,
+                        color: Color(0xFF70D6FF),
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
