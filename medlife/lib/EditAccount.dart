@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class EditAccount extends StatefulWidget {
   @override
@@ -6,13 +9,24 @@ class EditAccount extends StatefulWidget {
 }
 
 class _EditAccountState extends State<EditAccount> {
-  bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _newPasswordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  int? userId; // Change userId to int
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserId();
+  }
+
+  Future<void> _loadUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userId = prefs.getInt('userId'); // Retrieve as int
+    });
+    print("Loaded User ID: $userId");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +49,16 @@ class _EditAccountState extends State<EditAccount> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
                 SizedBox(height: 32),
-                _buildInputField("Enter your email", Icons.email, false, controller: _emailController),
+                _buildInputField("Enter your name", Icons.person, controller: _nameController),
                 SizedBox(height: 16),
-                _buildInputField("Enter your password", Icons.lock, true, controller: _passwordController),
-                SizedBox(height: 16),
-                _buildInputField("Enter your new password", Icons.lock, true, controller: _newPasswordController),
-                SizedBox(height: 16),
-                _buildInputField("Confirm your password", Icons.lock, true, controller: _confirmPasswordController, isConfirm: true),
+                _buildInputField("Enter your email", Icons.email, controller: _emailController),
                 SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: _handleSubmit,
+                  onPressed: () {
+                    print("Edit button clicked");
+                    _handleSubmit();
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF70D6FF),
                     foregroundColor: Colors.black,
@@ -55,7 +67,7 @@ class _EditAccountState extends State<EditAccount> {
                       borderRadius: BorderRadius.circular(24),
                     ),
                   ),
-                  child: Text("Create Account"),
+                  child: Text("Edit"),
                 ),
                 SizedBox(height: 16),
               ],
@@ -66,20 +78,13 @@ class _EditAccountState extends State<EditAccount> {
     );
   }
 
-  Widget _buildInputField(String hintText, IconData icon, bool isPassword, {bool isConfirm = false, TextEditingController? controller}) {
+  Widget _buildInputField(String hintText, IconData icon, {TextEditingController? controller}) {
     return TextFormField(
       controller: controller,
-      obscureText: isPassword ? (isConfirm ? _obscureConfirmPassword : _obscurePassword) : false,
       style: TextStyle(color: Colors.white),
       validator: (value) {
         if (value!.isEmpty) {
           return '$hintText cannot be empty';
-        }
-        if (isConfirm && value != _newPasswordController.text) {
-          return 'Passwords do not match';
-        }
-        if (!isConfirm && isPassword && value.length < 6) {
-          return 'Password should be at least 6 characters';
         }
         return null;
       },
@@ -93,34 +98,35 @@ class _EditAccountState extends State<EditAccount> {
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide.none,
         ),
-        suffixIcon: isPassword
-            ? IconButton(
-                icon: Icon(
-                  isConfirm
-                      ? (_obscureConfirmPassword ? Icons.visibility_off : Icons.visibility)
-                      : (_obscurePassword ? Icons.visibility_off : Icons.visibility),
-                  color: Colors.grey,
-                ),
-                onPressed: () {
-                  setState(() {
-                    if (isConfirm) {
-                      _obscureConfirmPassword = !_obscureConfirmPassword;
-                    } else {
-                      _obscurePassword = !_obscurePassword;
-                    }
-                  });
-                },
-              )
-            : null,
       ),
     );
   }
 
-  void _handleSubmit() {
-    if (_formKey.currentState!.validate()) {
-      // Process data (e.g., save to server, navigate to another screen)
-      // For now, let's just show a success message
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account updated successfully')));
+  Future<void> _handleSubmit() async {
+    // Ensure userId is not null
+    if (userId != null) {
+      print("Submitting form with ID: $userId, Username: ${_nameController.text}, Email: ${_emailController.text}");
+
+      final response = await http.patch(
+        Uri.parse('http://localhost:8000/api/users/editProfile'), // Replace with your actual IP address
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'id': userId.toString(), // Convert int to string for the API
+          'username': _nameController.text,
+          'email': _emailController.text,
+        }),
+      );
+
+      print("Status Code: ${response.statusCode}");
+      print("Response Body: ${response.body}");
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile updated successfully')));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error updating profile: ${response.body}')));
+      }
+    } else {
+      print("User ID is null");
     }
   }
 }

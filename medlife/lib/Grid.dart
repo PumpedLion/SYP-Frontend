@@ -7,11 +7,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: GridPage());
+    return MaterialApp(debugShowCheckedModeBanner: false,  );
   }
 }
 
 class GridPage extends StatelessWidget {
+  final String username;
+  final String profileImage;
+
+  // Constructor to accept name and profile image from the previous page
+  GridPage({required this.username, required this.profileImage});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,28 +41,37 @@ class GridPage extends StatelessWidget {
                       width: 80, // Adjust width
                       height: 80, // Adjust height
                       child: CircleAvatar(
-                        radius: 40, // This will now take effect
-                        backgroundImage: AssetImage('assets/Icons/Man.png'),
+                        radius: 40,
+                        backgroundImage: AssetImage(profileImage), // Use the passed profile image
                       ),
                     ),
                     SizedBox(width: 16),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hi John,',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 20,
+                    Expanded(
+                      // Ensures the Column doesn't overflow
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Hi $username,', // Use the passed name
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Refresh the mind and spirit And bring \n clarity and focus',
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                      ],
+                          SizedBox(height: 8),
+                          Text(
+                            'Refresh the mind and spirit And bring clarity and focus',
+                            style: TextStyle(color: Colors.white70),
+                            maxLines:
+                                2, // Prevents text from growing infinitely
+                            overflow:
+                                TextOverflow
+                                    .ellipsis, // Adds '...' if text overflows
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

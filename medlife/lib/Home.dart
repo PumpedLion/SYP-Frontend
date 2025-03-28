@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    );
-  }
-}
-
 class HomeScreen extends StatelessWidget {
+  final String username;
+  final String profileImage;
+
+  HomeScreen({required this.username, required this.profileImage});
+
   final List<Map<String, String>> meditationItems = [
     {
       "image": "assets/image4.png",
@@ -67,18 +58,19 @@ class HomeScreen extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage('assets/Icons/Man.png'),
+              backgroundImage: AssetImage(profileImage), // Passed Profile Image
+              radius: 25,
             ),
             SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hello John',
+                  'Hello $username', // Passed Name
                   style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "How’s your Mood Today?",
+                  "How's your Mood Today?",
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
               ],
@@ -123,15 +115,21 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildCategoryChips() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildChip("All", selected: true),
-        _buildChip("Music"),
-        _buildChip("Meditation"),
-        _buildChip("Focus"),
-        _buildChip("Stress"),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          _buildChip("All", selected: true),
+          SizedBox(width: 8),
+          _buildChip("Music"),
+          SizedBox(width: 8),
+          _buildChip("Meditation"),
+          SizedBox(width: 8),
+          _buildChip("Focus"),
+          SizedBox(width: 8),
+          _buildChip("Stress"),
+        ],
+      ),
     );
   }
 
